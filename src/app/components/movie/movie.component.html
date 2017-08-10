@@ -1,0 +1,34 @@
+<div *ngIf="movie">
+  <div class="card-deck">
+    <div class="card col-md-3 col-lg-3 col-xl-3 border-0">
+      <img class="rounded float-center" src="http://image.tmdb.org/t/p/w185/{{ movie.poster_path }}" alt="Sin Imagen Disponible"
+        width="100%" height="100%">
+      <div class="card-footer text-muted text-center border-0">
+        <a href="http://image.tmdb.org/t/p/original/{{ movie.poster_path }}" target="_blank">Ver original</a>
+      </div>
+    </div>
+    <div class="card col-md-9 col-lg-9git col-xl-9 border-0">
+      <div class="card-block">
+        <h1 class="card-title"><a href="https://www.themoviedb.org/movie/{{ movie.id }}" target="_blank"><strong>{{ movie.title }}</strong></a></h1>
+        <h5 class="card-subtitle mb-2 text-muted">{{ movie.original_title }}</h5>
+        <p class="card-text"><strong>Sinopsis:</strong> {{ movie.overview }}</p>
+        <p class="card-text"><strong>Director:</strong> {{ director }}</p>
+        <p class="card-text"><strong>Géneros:</strong> <span *ngFor="let genre of genres">{{ genre.name }}.&nbsp;</span></p>
+        <p class="card-text"><strong>Estreno:</strong> {{ movie.release_date | date:'dd/MM/yyyy' }}</p>
+        <p class="card-text"><strong>Valoración:</strong> {{ movie.vote_average }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="hasReviews">
+    <hr>
+    <h2><em><strong>Reviews:</strong></em></h2>
+
+    <div *ngFor="let review of reviews">
+      <blockquote class="blockquote">
+        <p class="mb-0"><small><em>{{ review.content }}</em></small></p>
+        <footer class="blockquote-footer">Escrita por <cite title="Source Title"><strong>{{ review.author }}</strong></cite></footer>
+      </blockquote>
+    </div>
+  </div>
+</div>
