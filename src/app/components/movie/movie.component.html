@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-    
+
   <table class="table borderless mt-3">
     <thead>
       <th>Imagen</th>
@@ -28,7 +28,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let cas of cast ; let i = index">
-        <td *ngIf="i<11" class="align-middle"><img src="https://image.tmdb.org/t/p/w640{{ cas.profile_path }}" width="50px" height="70px" alt="Sin imagen"></td>
+        <td *ngIf="i<11" class="align-middle"><img src="https://image.tmdb.org/t/p/w45{{ cas.profile_path }}" width="50px" height="70px" alt="Sin imagen"></td>
         <td *ngIf="i<11" class="align-middle">
           <h5>{{ cas.name }}</h5>
         </td>
