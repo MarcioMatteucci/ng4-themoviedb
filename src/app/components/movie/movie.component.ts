@@ -52,6 +52,7 @@ export class MovieComponent implements OnInit {
             this.director = data.crew.find(p => p.job === 'Director').name;
             this.cast = data.cast;
             console.log(this.cast);
+            console.log(this.cast[0].character);
           });
       });
   }
