@@ -19,20 +19,25 @@
       </div>
     </div>
   </div>
-<table class="table">
-  <thead>
-    <th>Imagen</th>
-    <th>Actor</th>
-    <th>Personaje</th>    
-  </thead>
-  <tbody>
-    <tr *ngFor="let cas of cast ; let i = index" >  
-        <td *ngIf="i<11"><img  src="https://image.tmdb.org/t/p/w640{{cas.profile_path}}" width="50px" ></td>        
-        <td *ngIf="i<11"> <h5>{{ cas.name }}</h5></td>  
-        <td *ngIf="i<11"><h5>{{ cas.character }}</h5></td>
-    </tr>
-  </tbody>
-</table>
+  
+  <table class="table borderless mt-3">
+    <thead>
+      <th>Imagen</th>
+      <th>Actor</th>
+      <th>Personaje</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cas of cast ; let i = index">
+        <td *ngIf="i<11" class="align-middle"><img src="https://image.tmdb.org/t/p/w640{{ cas.profile_path }}" width="50px"></td>
+        <td *ngIf="i<11" class="align-middle">
+          <h5>{{ cas.name }}</h5>
+        </td>
+        <td *ngIf="i<11" class="align-middle">
+          <h5>{{ cas.character }}</h5>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
   <div *ngIf="hasReviews">
     <hr>
