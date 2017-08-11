@@ -49,7 +49,7 @@ export class MovieComponent implements OnInit {
         this.themoviedbService.getCastByMovieId(id)
           .subscribe(data => {
             // console.log(data);
-            this.director = data.crew[0].name;
+            this.director = data.crew.find(p => p.job === 'Director').name;
             this.cast = data.cast;
             console.log(this.cast);
           });
