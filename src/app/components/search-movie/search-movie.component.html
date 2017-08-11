@@ -17,7 +17,9 @@
 <div *ngIf="findSomething && searchStr !== ''">
   <div *ngFor="let movie of movies">
     <div class="card mb-1">
+      
       <div class="card-block">
+        <img  src="https://image.tmdb.org/t/p/w45{{movie.poster_path}}" width="60px" height="90px" alt="Sin imagen" >
         <h3 class="card-title"><a routerLink="/movie/{{movie.id}}" routerLinkActive="active"><strong>{{ movie.title }}</strong></a></h3>
         <p class="card-text my-1"><strong>Título Original: </strong> {{ movie.original_title }} </p>
         <p class="card-text my-1"><strong>Estreno: </strong> {{ movie.release_date | date:'dd/MM/yyyy' }} </p>
