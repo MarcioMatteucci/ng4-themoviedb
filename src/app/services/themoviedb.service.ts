@@ -14,11 +14,13 @@ export class ThemoviedbService {
   query = '&query=';
   page1 = '&page=1';
   include_adult = '&include_adult=false';
+  typeToken = '/authentication/token/new?';
 
   private searchUrl: string;
   private movieUrl: string;
   private reviewsUrl: string;
   private castUrl: string;
+  private tokenUrl: string;
 
   constructor(
     private http: Http
@@ -50,6 +52,13 @@ export class ThemoviedbService {
   getCastByMovieId(movieId: string) {
     this.castUrl = this.domain + this.typeMovieById + movieId + '/credits?' + this.apiKey;
     return this.http.get(this.castUrl)
+      .map(res => res.json());
+  }
+
+  // https://api.themoviedb.org/3/authentication/token/new?api_key=<<api_key>>
+  getRequestToken() {
+    this.tokenUrl = this.domain + this.typeToken + this.apiKey;
+    return this.http.get(this.tokenUrl)
       .map(res => res.json());
   }
 
