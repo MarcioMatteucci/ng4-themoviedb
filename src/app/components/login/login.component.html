@@ -1,3 +1,48 @@
 <h1>
-  Login Component
+  <strong>Iniciar Sesión:</strong>
 </h1>
+<hr>
+
+<div class="alert" [ngClass]="messageClass" role="alert">
+  {{ message }}
+</div>
+
+<!-- Login Form -->
+<form class="mb-3" [formGroup]="form" (submit)="onLoginSubmit()">
+
+  <!-- Username Field -->
+  <div class="form-group">
+    <label for="username"><strong>Nombre de Usuario:</strong></label>
+    <div [ngClass]="{'has-danger': form.controls.username.errors && form.controls.username.dirty, 'has-success': form.controls.username.valid && form.controls.username.dirty }">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+        <input class="form-control" type="text" name="username" placeholder="Ingrese su Usuario" formControlName="username" autocomplete="off"
+        />
+      </div>
+      <!-- Validation -->
+      <div class="form-control-feedback">
+        <p *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">El campo es requerido.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Password Field  -->
+  <div class="form-group">
+    <label for="password"><strong>Contraseña:</strong></label>
+    <div [ngClass]="{'has-danger': form.controls.password.errors && form.controls.password.dirty, 'has-success': form.controls.password.valid && form.controls.password.dirty }">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+        <input class="form-control" type="password" name="password" placeholder="Ingrese su Contraseña" formControlName="password"
+          autocomplete="false" />
+      </div>
+      <!-- Validation -->
+      <div class="form-control-feedback">
+        <p *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">El campo es requerido.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Submit Button -->
+  <button [disabled]="!form.valid || processing" type="submit" class="btn btn-primary">
+      <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Iniciar Sesión
+  </button>
+</form>
