@@ -55,4 +55,8 @@ export class AuthenticateService {
     }
   }
 
+  logout() {
+    localStorage.clear();
+  }
+
 }

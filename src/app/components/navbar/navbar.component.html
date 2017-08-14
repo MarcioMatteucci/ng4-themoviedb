@@ -24,6 +24,9 @@
       <li *ngIf="!authenticateService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
         <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
       </li>
+      <li *ngIf="authenticateService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/home" (click)="onLogOutClick()">Cerrar Sesión</a>
+      </li>
     </ul>
   </div>
 </nav>
