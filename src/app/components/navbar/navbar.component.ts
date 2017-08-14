@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthenticateService } from '../../services/authenticate.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -9,7 +11,8 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    public authenticateService: AuthenticateService
   ) { }
 
   ngOnInit() {

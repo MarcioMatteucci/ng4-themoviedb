@@ -2,48 +2,21 @@
   <strong>Iniciar Sesión:</strong>
 </h1>
 <hr>
-<p class="lead">Usa tus credenciales de <code>www.themoviedb.org</code> para iniciar tu sesión <br> De esta manera podras puntuar las películas que desees.</p>
+<p class="lead">Usa tus credenciales de <code>www.themoviedb.org</code> para iniciar tu sesión.
+  <br> Para poder puntuar las películas que desees, sigue las instrucciones:</p>
 
-<div class="alert" [ngClass]="messageClass" role="alert">
+<div *ngIf="messageShow" [ngClass]="messageClass">
   {{ message }}
 </div>
 
-<button class="btn btn-primary" (click)="goToLogIn()">
+<ul class="list-group border-0 lead mb-3">
+  <li class="list-group-item border-0"><strong>1.</strong>&nbsp;&nbsp;&nbsp;Da click en el botón "Iniciar Sesión" de abajo.</li>
+  <li class="list-group-item border-0"><strong>2.</strong>&nbsp;&nbsp;&nbsp;Serás redirigido a www.themoviedb.org.</li>
+  <li class="list-group-item border-0"><strong>3.</strong>&nbsp;&nbsp;&nbsp;Inicia sesión con tus credenciales.</li>
+  <li class="list-group-item border-0"><strong>4.</strong>&nbsp;&nbsp;&nbsp;Da click en el botón "Allow".</li>
+  <li class="list-group-item border-0"><strong>5.</strong>&nbsp;&nbsp;&nbsp;Serás redirigido devuelta a Ng4TheMovieDB.</li>
+</ul>
+
+<button [ngClass]="buttonClass" class="btn btn-primary mb-3" (click)="onClickLogIn()">
     <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Iniciar Sesión
 </button>
-
-
-<!--
-<form [formGroup]="form" (submit)="onLoginSubmit()">
-
-  <div class="form-group">
-    <label for="username"><strong>Nombre de Usuario:</strong></label>
-    <div [ngClass]="{'has-danger': form.controls.username.errors && form.controls.username.dirty, 'has-success': form.controls.username.valid && form.controls.username.dirty }">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-        <input class="form-control" type="text" name="username" placeholder="Ingrese su Usuario" formControlName="username" autocomplete="off"
-        />
-      </div>
-      <div class="form-control-feedback">
-        <p *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">El campo es requerido.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="password"><strong>Contraseña:</strong></label>
-    <div [ngClass]="{'has-danger': form.controls.password.errors && form.controls.password.dirty, 'has-success': form.controls.password.valid && form.controls.password.dirty }">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-        <input class="form-control" type="password" name="password" placeholder="Ingrese su Contraseña" formControlName="password"
-          autocomplete="false" />
-      </div>
-      <div class="form-control-feedback">
-        <p *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">El campo es requerido.</p>
-      </div>
-    </div>
-  </div>
-  <button [disabled]="!form.valid || processing" type="submit" class="btn btn-primary">
-      <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Iniciar Sesión
-  </button>
-</form> -->

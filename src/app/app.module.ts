@@ -15,10 +15,11 @@ import { SearchMovieComponent } from './components/search-movie/search-movie.com
 import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { MovieComponent } from './components/movie/movie.component';
+import { SuccessfulLoginComponent } from './components/successful-login/successful-login.component';
 
 // Services
 import { ThemoviedbService } from './services/themoviedb.service';
-import { SuccessfulLoginComponent } from './components/successful-login/successful-login.component';
+import { AuthenticateService } from './services/authenticate.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { SuccessfulLoginComponent } from './components/successful-login/successf
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ThemoviedbService],
+  providers: [ThemoviedbService, AuthenticateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
