@@ -6,6 +6,9 @@ import 'rxjs/add/operator/map';
 export class ThemoviedbService {
 
   domain = 'https://api.themoviedb.org/3';
+  authenticateDomain = 'https://www.themoviedb.org/authenticate/';
+  redirectTo = '?redirect_to=http://localhost:4200/search';
+  typeSessionId = '/authentication/session/new?';
   typeSearchMovie = '/search/movie?';
   typeMovieById = '/movie/';
   apiKey = 'api_key=a1f9c26ac26edcec7f8c8237a061f2d7';
@@ -21,6 +24,8 @@ export class ThemoviedbService {
   private reviewsUrl: string;
   private castUrl: string;
   private tokenUrl: string;
+  private loginUrl: string;
+  private sessionUrl: string;
 
   constructor(
     private http: Http
@@ -62,4 +67,24 @@ export class ThemoviedbService {
       .map(res => res.json());
   }
 
+  // // https://www.themoviedb.org/authenticate/{REQUEST_TOKEN}?redirect_to=http://www.yourapp.com/approved
+  // goToLogIn(requestToken: string) {
+  //   this.loginUrl = this.authenticateDomain + requestToken + this.redirectTo;
+  // }
+
+  // tslint:disable-next-line:max-line-length
+  // https://api.themoviedb.org/3/authentication/session/new?api_key=a1f9c26ac26edcec7f8c8237a061f2d7&request_token=837ce5249f1e1c5986359dfd74dae2bf3d26b8c9
+  getSessionId(request_token: string) {
+    this.sessionUrl = this.domain + this.typeSessionId + this.apiKey + '&request_token=' + request_token;
+    return this.http.get(this.sessionUrl)
+      .map(res => res.json());
+  }
+
+  storeRequestToken(request_token: string) {
+    localStorage.setItem('request_token', request_token);
+  }
+
+  storeSessionId(session_id: string) {
+    localStorage.setItem('session_id', session_id);
+  }
 }

@@ -18,6 +18,7 @@ import { MovieComponent } from './components/movie/movie.component';
 
 // Services
 import { ThemoviedbService } from './services/themoviedb.service';
+import { SuccessfulLoginComponent } from './components/successful-login/successful-login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ThemoviedbService } from './services/themoviedb.service';
     SearchMovieComponent,
     AboutComponent,
     LoginComponent,
-    MovieComponent
+    MovieComponent,
+    SuccessfulLoginComponent
   ],
   imports: [
     BrowserModule,

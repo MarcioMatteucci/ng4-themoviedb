@@ -7,6 +7,7 @@ import { SearchMovieComponent } from './components/search-movie/search-movie.com
 import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { MovieComponent } from './components/movie/movie.component';
+import { SuccessfulLoginComponent } from './components/successful-login/successful-login.component';
 
 const routes: Routes = [
   // Ruta Default manda al Home
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'movie/:id',
     component: MovieComponent
+  },
+  {
+    path: 'successfullogin',
+    component: SuccessfulLoginComponent
   },
   // Cualquier Ruta incorrecta manda al Home (Siempre abajo de todas las demas)
   {
