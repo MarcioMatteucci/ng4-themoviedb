@@ -22,10 +22,10 @@
         <a class="nav-link" routerLink="/search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;Buscar Películas</a>
       </li>
       <li *ngIf="!authenticateService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
+        <a class="nav-link" routerLink="/identify">Identificarse</a>
       </li>
       <li *ngIf="authenticateService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" routerLink="/home" (click)="onLogOutClick()">Cerrar Sesión</a>
+        <a class="nav-link" routerLink="/home" (click)="onClickLogOut()">Cerrar Sesión</a>
       </li>
     </ul>
   </div>

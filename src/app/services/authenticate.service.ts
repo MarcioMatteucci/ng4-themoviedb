@@ -10,7 +10,7 @@ export class AuthenticateService {
   typeToken = '/authentication/token/new?';
   typeSessionId = '/authentication/session/new?';
   authenticateDomain = 'https://www.themoviedb.org/authenticate/';
-  redirectTo = '?redirect_to=http://localhost:4200/successfullogin';
+  redirectTo = '?redirect_to=http://localhost:4200/login';
 
   private tokenUrl;
   private sessionUrl;
@@ -55,7 +55,7 @@ export class AuthenticateService {
     }
   }
 
-  logout() {
+  logOut() {
     localStorage.clear();
   }
 

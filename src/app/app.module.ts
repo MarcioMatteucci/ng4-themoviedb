@@ -13,9 +13,9 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchMovieComponent } from './components/search-movie/search-movie.component';
 import { AboutComponent } from './components/about/about.component';
-import { LoginComponent } from './components/login/login.component';
+import { IdentifyComponent } from './components/identify/identify.component';
 import { MovieComponent } from './components/movie/movie.component';
-import { SuccessfulLoginComponent } from './components/successful-login/successful-login.component';
+import { LoginComponent } from './components/login/login.component';
 
 // Services
 import { ThemoviedbService } from './services/themoviedb.service';
@@ -29,9 +29,9 @@ import { AuthenticateService } from './services/authenticate.service';
     FooterComponent,
     SearchMovieComponent,
     AboutComponent,
-    LoginComponent,
+    IdentifyComponent,
     MovieComponent,
-    SuccessfulLoginComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

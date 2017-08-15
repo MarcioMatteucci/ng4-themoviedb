@@ -1,22 +1,7 @@
-<h1>
-  <strong>Iniciar Sesión:</strong>
-</h1>
-<hr>
-<p class="lead">Usa tus credenciales de <code>www.themoviedb.org</code> para iniciar tu sesión.
-  <br> Para poder puntuar las películas que desees, sigue las instrucciones:</p>
-
-<div *ngIf="messageShow" [ngClass]="messageClass">
-  {{ message }}
+<div class="jumbotron text-center mb-3" style="background-color: #DFF0D8; border-color: #DFF0D8;">
+  <h1 class="display-4" style="color: #3C763D">Has sido identificado con <span><strong>Exito!</strong></span></h1>
+  <p class="lead" style="color: #3C763D">Para terminar de iniciar la sesión has click en el boton de abajo.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" routerLink="/search" (click)="onClickLogIn()"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Iniciar Sesión</a>
+  </p>
 </div>
-
-<ul class="list-group border-0 lead mb-3">
-  <li class="list-group-item border-0"><strong>1.</strong>&nbsp;&nbsp;&nbsp;Da click en el botón "Iniciar Sesión" de abajo.</li>
-  <li class="list-group-item border-0"><strong>2.</strong>&nbsp;&nbsp;&nbsp;Serás redirigido a www.themoviedb.org.</li>
-  <li class="list-group-item border-0"><strong>3.</strong>&nbsp;&nbsp;&nbsp;Inicia sesión con tus credenciales.</li>
-  <li class="list-group-item border-0"><strong>4.</strong>&nbsp;&nbsp;&nbsp;Da click en el botón "Allow".</li>
-  <li class="list-group-item border-0"><strong>5.</strong>&nbsp;&nbsp;&nbsp;Serás redirigido devuelta a Ng4TheMovieDB.</li>
-</ul>
-
-<button [ngClass]="buttonClass" class="btn btn-primary mb-3" (click)="onClickLogIn()">
-    <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Iniciar Sesión
-</button>

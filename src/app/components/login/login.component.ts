@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { ThemoviedbService } from '../../services/themoviedb.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 
 @Component({
@@ -10,38 +10,22 @@ import { AuthenticateService } from '../../services/authenticate.service';
 })
 export class LoginComponent implements OnInit {
 
-  request_token;
-  authenticateDomain = 'https://www.themoviedb.org/authenticate/';
-  redirectTo = '?redirect_to=http://localhost:4200/successfullogin';
-
-  messageShow = false;
-  messageClass;
-  message;
-  buttonClass;
+  request_token = localStorage.getItem('request_token');
+  session_id;
 
   constructor(
-    private authenticateService: AuthenticateService
+    private authenticateService: AuthenticateService,
+    private router: Router
   ) { }
 
-
   onClickLogIn() {
-    this.authenticateService.getRequestToken()
+    this.authenticateService.getSessionId(this.request_token)
       .subscribe(data => {
-        this.request_token = data.request_token;
-        this.authenticateService.storeRequestToken(this.request_token);
+        this.session_id = data.session_id;
+        this.authenticateService.storeSessionId(this.session_id);
       });
-      this.messageShow = true;
-      this.messageClass = 'alert alert-success';
-      this.message = 'Estás siendo redirigido a www.themoviedb.org';
-      this.buttonClass = 'disabled';
-
-      setTimeout(() => {
-        this.authenticateService.goToLogIn(this.request_token);
-      }, 3000);
   }
 
   ngOnInit() {
-    localStorage.clear();
   }
-
 }
