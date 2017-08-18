@@ -18,13 +18,13 @@ export class SearchMovieComponent implements OnInit {
   ) { }
 
   searchMovie() {
-    console.log(this.searchStr);
+    // console.log(this.searchStr);
     if (this.searchStr !== '') {
       this.themoviedbService.searchMovie(this.searchStr)
         .subscribe(data => {
           if (data.total_results > 0) {
             this.findSomething = true;
-            console.log(data.results);
+            // console.log(data.results);
             this.movies = data.results;
           } else {
             this.findSomething = false;
