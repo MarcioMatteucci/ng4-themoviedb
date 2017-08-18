@@ -8,6 +8,7 @@ import { AboutComponent } from './components/about/about.component';
 import { IdentifyComponent } from './components/identify/identify.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   // Ruta Default manda al Home
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   // Cualquier Ruta incorrecta manda al Home (Siempre abajo de todas las demas)
   {
