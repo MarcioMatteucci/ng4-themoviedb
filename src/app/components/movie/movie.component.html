@@ -1,6 +1,6 @@
 <div *ngIf="movie">
   <div class="card-deck">
-    <div class="card col-md-3 col-lg-3 col-xl-3 border-0">
+    <div *ngIf="movie.poster_path" class="card col-md-3 col-lg-3 col-xl-3 border-0">
       <img class="rounded float-center" src="http://image.tmdb.org/t/p/w185/{{ movie.poster_path }}" alt="Sin Imagen Disponible"
         width="100%" height="100%">
       <div class="card-footer text-muted text-center border-0">
@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <table class="table borderless mt-3">
+  <table *ngIf="hasCrew" class="table borderless mt-3">
     <thead>
       <th>Imagen</th>
       <th>Actor</th>
@@ -41,7 +41,7 @@
 
   <div *ngIf="hasReviews">
     <hr>
-    <h2><em><strong>Reviews:</strong></em></h2>
+    <h2><strong>Reviews:</strong></h2>
 
     <div *ngFor="let review of reviews">
       <blockquote class="blockquote">

@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(data => {
         this.user = data;
         this.avatar = data.avatar.gravatar.hash;
-        console.log(this.user);
+        // console.log(this.user);
         // console.log(this.avatar);
       });
 

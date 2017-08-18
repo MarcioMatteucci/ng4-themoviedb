@@ -14,17 +14,17 @@
         <a class="nav-link" routerLink="/home">Inicio</a>
       </li>
       <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" routerLink="/about">Acerca de</a>
+        <a class="nav-link" routerLink="/search">Buscar Películas&nbsp;&nbsp;<i class="fa fa-search" aria-hidden="true"></i></a>
       </li>
     </ul>
     <ul class="navbar-nav">
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" routerLink="/search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;Buscar Películas</a>
-      </li>
       <li *ngIf="!authenticateService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
         <a class="nav-link" routerLink="/identify">Identificarse</a>
       </li>
       <li *ngIf="authenticateService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/profile"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Perfil</a>
+      </li>
+      <li *ngIf="authenticateService.isLoggedIn()" class="nav-item">
         <a class="nav-link" routerLink="/home" (click)="onClickLogOut()">Cerrar Sesión</a>
       </li>
     </ul>

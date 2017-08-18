@@ -25,6 +25,10 @@ import { ThemoviedbService } from './services/themoviedb.service';
 import { AuthenticateService } from './services/authenticate.service';
 import { UserService } from './services/user.service';
 
+// Guards
+import { AuthGuard } from './guards/auth.guards';
+import { NotAuthGuard } from './guards/notAuth.guards';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +49,7 @@ import { UserService } from './services/user.service';
     FormsModule,
     FlashMessagesModule
   ],
-  providers: [ThemoviedbService, AuthenticateService, UserService],
+  providers: [ThemoviedbService, AuthenticateService, UserService, AuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

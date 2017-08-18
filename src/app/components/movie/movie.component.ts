@@ -20,6 +20,7 @@ export class MovieComponent implements OnInit {
   reviews: Review[];
   cast: People[];
   hasReviews = false;
+  hasCrew = false;
   director: string;
 
   constructor(
@@ -48,11 +49,14 @@ export class MovieComponent implements OnInit {
 
         this.themoviedbService.getCastByMovieId(id)
           .subscribe(data => {
-            // console.log(data);
-            this.director = data.crew.find(p => p.job === 'Director').name;
-            this.cast = data.cast;
-            // console.log(this.cast);
-            // console.log(this.cast[0].character);
+            if (data) {
+              this.hasCrew = true;
+              // console.log(data);
+              this.director = data.crew.find(p => p.job === 'Director').name;
+              this.cast = data.cast;
+              // console.log(this.cast);
+              // console.log(this.cast[0].character);
+            }
           });
       });
   }

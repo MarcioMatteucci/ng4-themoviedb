@@ -10,6 +10,10 @@ import { MovieComponent } from './components/movie/movie.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
+// Guards
+import { AuthGuard } from './guards/auth.guards';
+import { NotAuthGuard } from './guards/notAuth.guards';
+
 const routes: Routes = [
   // Ruta Default manda al Home
   {
@@ -30,7 +34,8 @@ const routes: Routes = [
   },
   {
     path: 'identify',
-    component: IdentifyComponent
+    component: IdentifyComponent,
+    canActivate: [NotAuthGuard]
   },
   {
     path: 'movie/:id',
@@ -38,11 +43,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [NotAuthGuard]
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   // Cualquier Ruta incorrecta manda al Home (Siempre abajo de todas las demas)
   {

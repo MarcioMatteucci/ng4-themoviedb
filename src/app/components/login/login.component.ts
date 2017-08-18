@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         this.session_id = data.session_id;
         this.authenticateService.storeSessionId(this.session_id);
       });
-      this.flashMessagesService.show('Su sesión se ha iniciado', { cssClass: 'alert alert-info text-center h4 lead' });
+    this.flashMessagesService.show('Su sesión se ha iniciado', { cssClass: 'alert alert-info text-center h4 lead' });
   }
 
   ngOnInit() {
