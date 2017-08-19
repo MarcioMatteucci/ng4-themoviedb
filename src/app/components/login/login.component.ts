@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { AuthenticateService } from '../../services/authenticate.service';
@@ -13,10 +13,12 @@ export class LoginComponent implements OnInit {
 
   request_token = localStorage.getItem('request_token');
   session_id;
+  isApproved;
 
   constructor(
     private authenticateService: AuthenticateService,
     private router: Router,
+    private route: ActivatedRoute,
     private flashMessagesService: FlashMessagesService
   ) { }
 
@@ -29,6 +31,14 @@ export class LoginComponent implements OnInit {
     this.flashMessagesService.show('Su sesión se ha iniciado', { cssClass: 'alert alert-info text-center h4 lead' });
   }
 
-  ngOnInit() {
+  tryAgain() {
+    this.router.navigate(['/identify']);
   }
+
+  ngOnInit() {
+    this.isApproved = this.route.snapshot.queryParams['approved'];
+    // console.log(this.isApproved);
+  }
+
 }
+

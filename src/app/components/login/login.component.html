@@ -1,7 +1,15 @@
-<div class="jumbotron text-center mb-3" style="background-color: #DFF0D8; border-color: #DFF0D8;">
-  <h1 class="display-4" style="color: #3C763D">Has sido identificado con <span><strong>Exito!</strong></span></h1>
+<div *ngIf="isApproved" class="jumbotron text-center mb-3" style="background-color: #DFF0D8; border-color: #DFF0D8;">
+  <h1 class="display-4" style="color: #3C763D"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Has sido identificado con <span><strong>Exito!</strong></span></h1>
   <p class="lead" style="color: #3C763D">Para terminar de iniciar la sesión has click en el boton de abajo.</p>
   <p class="lead">
     <a class="btn btn-primary btn-lg" routerLink="/search" (click)="onClickLogIn()"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Iniciar Sesión</a>
+  </p>
+</div>
+
+<div *ngIf="!isApproved" class="jumbotron text-center mb-3" style="background-color: #F2DEDE; border-color: #F2DEDE;">
+  <h1 class="display-4" style="color: #A94442"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Has denegado el acceso a la cuenta o algo salío <span><strong>Mal!</strong></span></h1>
+  <p class="lead" style="color: #A94442">Para volver a intentarlo da en el botón de abajo y recuerda dar a <strong>ALLOW</strong>.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" routerLink="/search" (click)="tryAgain()"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Volver a intentar</a>
   </p>
 </div>
