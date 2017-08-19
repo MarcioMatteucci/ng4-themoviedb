@@ -1,9 +1,12 @@
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { FlashMessagesModule } from 'angular2-flash-messages';
+
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { MyToastOptions } from './my-toast-options';
 
 // Routing Module
 import { AppRoutingModule } from './app-routing.module';
@@ -47,9 +50,17 @@ import { NotAuthGuard } from './guards/notAuth.guards';
     AppRoutingModule,
     HttpModule,
     FormsModule,
-    FlashMessagesModule
+    BrowserAnimationsModule,
+    ToastModule.forRoot()
   ],
-  providers: [ThemoviedbService, AuthenticateService, UserService, AuthGuard, NotAuthGuard],
+  providers: [
+    ThemoviedbService,
+    AuthenticateService,
+    UserService,
+    AuthGuard,
+    NotAuthGuard,
+    { provide: ToastOptions, useClass: MyToastOptions }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

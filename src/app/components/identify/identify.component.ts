@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 import { ThemoviedbService } from '../../services/themoviedb.service';
 import { AuthenticateService } from '../../services/authenticate.service';
@@ -30,14 +30,14 @@ export class IdentifyComponent implements OnInit {
         this.request_token = data.request_token;
         this.authenticateService.storeRequestToken(this.request_token);
       });
-      this.messageShow = true;
-      this.messageClass = 'alert alert-success';
-      this.message = 'Estás siendo redirigido a www.themoviedb.org';
-      this.buttonClass = 'disabled';
+    this.messageShow = true;
+    this.messageClass = 'alert alert-success';
+    this.message = 'Estás siendo redirigido a www.themoviedb.org';
+    this.buttonClass = 'disabled';
 
-      setTimeout(() => {
-        this.authenticateService.goToLogIn(this.request_token);
-      }, 3000);
+    setTimeout(() => {
+      this.authenticateService.goToLogIn(this.request_token);
+    }, 3000);
   }
 
   ngOnInit() {

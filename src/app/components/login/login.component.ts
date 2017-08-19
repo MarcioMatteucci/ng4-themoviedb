@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
+
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { AuthenticateService } from '../../services/authenticate.service';
 
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
     private authenticateService: AuthenticateService,
     private router: Router,
     private route: ActivatedRoute,
-    private flashMessagesService: FlashMessagesService
+    public toastr: ToastsManager
   ) { }
 
   onClickLogIn() {
@@ -27,8 +28,10 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         this.session_id = data.session_id;
         this.authenticateService.storeSessionId(this.session_id);
+        this.toastr.success('Tu sesión se ha iniciado', 'Exito!');
       });
-    this.flashMessagesService.show('Su sesión se ha iniciado', { cssClass: 'alert alert-info text-center h4 lead' });
+
+
   }
 
   tryAgain() {

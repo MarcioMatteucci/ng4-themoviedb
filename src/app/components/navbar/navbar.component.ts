@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
+
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { AuthenticateService } from '../../services/authenticate.service';
 
@@ -14,12 +15,12 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     public authenticateService: AuthenticateService,
-    private flashMessagesService: FlashMessagesService
+    public toastr: ToastsManager
   ) { }
 
   onClickLogOut() {
     this.authenticateService.logOut();
-    this.flashMessagesService.show('Su sesión se ha cerrado', { cssClass: 'alert alert-info text-center h4 lead' });
+    this.toastr.success('Tu sesión se ha cerrado', 'Exito!');
     this.router.navigate(['/home']);
   }
 
