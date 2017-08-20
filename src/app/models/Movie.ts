@@ -9,6 +9,7 @@ export class Movie {
     overview: string;
     release_date: string;
     vote_average: number;
+    rating?: number;
     genres: Genre[];
     cast: People[];
 }

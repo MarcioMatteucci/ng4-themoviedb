@@ -30,8 +30,6 @@ export class LoginComponent implements OnInit {
         this.authenticateService.storeSessionId(this.session_id);
         this.toastr.success('Tu sesión se ha iniciado', 'Exito!');
       });
-
-
   }
 
   tryAgain() {

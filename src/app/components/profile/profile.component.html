@@ -16,4 +16,28 @@
     </div>
   </div>
 </div>
-<br>
+
+<div class="mt-5" *ngIf="hasVotedMovies">
+    <h2><strong>Mis Puntuaciones:</strong></h2>
+
+    <table class="table borderless mt-3">
+      <thead>
+        <th>Película</th>
+        <th>Puntuación General</th>
+        <th>Mi Puntuación</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of userVotedMovies">
+          <td class="align-middle">
+            <h5><a routerLink="/movie/{{movie.id}}" routerLinkActive="active">{{ movie.title }}</a></h5>
+          </td>
+          <td class="align-middle">
+            <h5>{{ movie.vote_average }}</h5>
+          </td>
+          <td class="align-middle">
+            <h5><strong>{{ movie.rating }}</strong></h5>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { ThemoviedbService } from '../../services/themoviedb.service';
+import { AuthenticateService } from '../../services/authenticate.service';
+import { UserService } from '../../services/user.service';
+
 import { Movie } from '../../models/Movie';
 import { Genre } from '../../models/Genre';
 import { Review } from '../../models/Review';
 import { People } from '../../models/People';
-import { ActivatedRoute } from '@angular/router';
+
+
 
 
 @Component({
@@ -22,13 +28,47 @@ export class MovieComponent implements OnInit {
   hasReviews = false;
   hasCrew = false;
   director: string;
+  movieId;
+  userRating;
+  userHasVoted;
+  volverPuntuar = false;
 
   constructor(
     private themoviedbService: ThemoviedbService,
+    public authService: AuthenticateService,
+    private userService: UserService,
     private route: ActivatedRoute
   ) { }
 
+  onClickVolverPuntuar () {
+    this.volverPuntuar = true;
+  }
+
+  getUserVotedMovies() {
+    this.userService.getUserVotedMovies()
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.movieId = +params['id'];
+    });
+
+    if (this.authService.isLoggedIn()) {
+      this.userService.getUserVotedMovies()
+        .subscribe(data => {
+          if (data.results.find(movie => movie.id === this.movieId)) {
+            this.userRating = data.results.find(movie => movie.id === this.movieId).rating;
+            this.userHasVoted = true;
+            // console.log(this.userRating);
+          } else {
+            this.userHasVoted = false;
+          }
+        });
+    }
+
     this.route.params.map(params => params['id'])
       .subscribe((id) => {
         this.themoviedbService.getMovieById(id)

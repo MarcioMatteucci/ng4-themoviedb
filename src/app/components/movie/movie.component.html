@@ -15,32 +15,60 @@
         <p class="card-text"><strong>Director:</strong> {{ director }}</p>
         <p class="card-text"><strong>Géneros:</strong> <span *ngFor="let genre of genres">{{ genre.name }}.&nbsp;</span></p>
         <p class="card-text"><strong>Estreno:</strong> {{ movie.release_date | date:'dd/MM/yyyy' }}</p>
-        <p class="card-text"><strong>Valoración:</strong> {{ movie.vote_average }}</p>
       </div>
     </div>
   </div>
 
-  <table *ngIf="hasCrew" class="table borderless mt-3">
-    <thead>
-      <th>Imagen</th>
-      <th>Actor</th>
-      <th>Personaje</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cas of cast ; let i = index">
-        <td *ngIf="i<11" class="align-middle"><img src="https://image.tmdb.org/t/p/w45{{ cas.profile_path }}" width="50px" height="70px" alt="Sin imagen"></td>
-        <td *ngIf="i<11" class="align-middle">
-          <h5>{{ cas.name }}</h5>
-        </td>
-        <td *ngIf="i<11" class="align-middle">
-          <h5>{{ cas.character }}</h5>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="mt-5">
+    <div class="row">
+      <div class="col">
+        <h2><strong>Puntuación General:</strong> {{ movie.vote_average }}</h2>
+      </div>
+      <div *ngIf="authService.isLoggedIn() && userHasVoted" class="col">
+        <h2><strong>Mi puntuación:</strong> {{ userRating }}</h2>
+      </div>
+      <div *ngIf="authService.isLoggedIn() && !userHasVoted" class="col">
+        <p>No has puntuado.</p>
+      </div>
+      <div *ngIf="!authService.isLoggedIn()" class="col">
+        <p>Hay que logearse.</p>
+      </div>
+      <button *ngIf="authService.isLoggedIn() && userHasVoted && !volverPuntuar" type="button" class="btn btn-primary" (click)="onClickVolverPuntuar()">Volver a Puntuar</button>
+      <form *ngIf="(authService.isLoggedIn() && !userHasVoted) || (authService.isLoggedIn() && volverPuntuar)" class="form-inline">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-secondary">Puntuar</button>
+          <button type="button" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-  <div *ngIf="hasReviews">
-    <hr>
+
+  <div class="mt-5" *ngIf="hasCrew">
+    <h2><strong>Cast:</strong></h2>
+
+    <table class="table borderless mt-3">
+      <thead>
+        <th>Imagen</th>
+        <th>Actor</th>
+        <th>Personaje</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cas of cast ; let i = index">
+          <td *ngIf="i<11" class="align-middle"><img src="https://image.tmdb.org/t/p/w45{{ cas.profile_path }}" width="50px" height="70px" alt="Sin imagen"></td>
+          <td *ngIf="i<11" class="align-middle">
+            <h5>{{ cas.name }}</h5>
+          </td>
+          <td *ngIf="i<11" class="align-middle">
+            <h5>{{ cas.character }}</h5>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-5" *ngIf="hasReviews">
     <h2><strong>Reviews:</strong></h2>
 
     <div *ngFor="let review of reviews">
