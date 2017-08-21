@@ -61,7 +61,7 @@ export class MovieComponent implements OnInit {
         // console.log(data);
         if (data.status_code === 12 || data.status_code === 1) {
           setTimeout(() => {
-            this.toastr.success('Has valorado la película con un ' + this.currentValue, 'Exito!');
+            this.toastr.success('Valoraste la película con un ' + this.currentValue, 'Exito!');
             this.userRating = this.currentValue;
             this.userHasVoted = true;
             this.volverPuntuar = false;
