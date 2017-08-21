@@ -10,8 +10,7 @@ import { Genre } from '../../models/Genre';
 import { Review } from '../../models/Review';
 import { People } from '../../models/People';
 
-
-
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-movie',
@@ -32,26 +31,74 @@ export class MovieComponent implements OnInit {
   userRating;
   userHasVoted;
   volverPuntuar = false;
+  isLoading = true;
+  currentValue = 5;
+  btnMinusClass;
+  btnPlusClass;
+  maxLimit;
+  minLimit;
+  sendingUserRating = false;
 
   constructor(
     private themoviedbService: ThemoviedbService,
     public authService: AuthenticateService,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastsManager
   ) { }
 
-  onClickVolverPuntuar () {
+  onClickVolverPuntuar() {
     this.volverPuntuar = true;
+    this.currentValue = this.userRating;
   }
 
-  getUserVotedMovies() {
-    this.userService.getUserVotedMovies()
+  onClickRate() {
+    // console.log(this.currentValue);
+    this.sendingUserRating = true;
+
+    this.userService.setMovieRating(this.movieId, this.currentValue)
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
+        if (data.status_code === 12 || data.status_code === 1) {
+          setTimeout(() => {
+            this.toastr.success('Has valorado la película con un ' + this.currentValue, 'Exito!');
+            this.userRating = this.currentValue;
+            this.userHasVoted = true;
+            this.volverPuntuar = false;
+            this.sendingUserRating = false;
+          }, 1500);
+        } else {
+          this.toastr.error('Algo salió mal, vuelve a intentar', 'Error!');
+        }
       });
   }
 
+  onClickPlus() {
+    this.currentValue = this.currentValue + 0.5;
+    this.btnMinusClass = '';
+    this.minLimit = false;
+    if (this.currentValue === 10) {
+      this.btnPlusClass = 'disabled';
+      this.maxLimit = true;
+    }
+  }
+
+  onClickMinus() {
+    this.currentValue = this.currentValue - 0.5;
+    this.btnPlusClass = '';
+    this.maxLimit = false;
+    if (this.currentValue === 0) {
+      this.btnMinusClass = 'disabled';
+      this.minLimit = true;
+    }
+  }
+
   ngOnInit() {
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
+
     this.route.params.subscribe(params => {
       this.movieId = +params['id'];
     });

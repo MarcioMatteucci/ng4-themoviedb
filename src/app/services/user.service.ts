@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Request, RequestOptions, RequestOptionsArgs, Headers } from '@angular/http';
+import { Http, Response, Request, RequestOptions, RequestOptionsArgs, Headers, RequestMethod } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { Movie } from '../models/Movie';
@@ -34,6 +34,27 @@ export class UserService {
     // tslint:disable-next-line:max-line-length
     this.userVotedMovies = this.domain + this.typeVotedMovies + this.apiKey + '&language=es-ES' + this.sessionId + '&sort_by=created_at.asc&page=1';
     return this.http.get(this.userVotedMovies)
+      .map(res => res.json());
+  }
+
+  // https://api.themoviedb.org/3/movie/movieid/rating?api_key=<<>>&session_id=<<>>
+  setMovieRating(movieId: number, value: number) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    // no hace falta el .toString()
+    const data = {
+      'value': value
+    };
+
+    const requestOptions = new RequestOptions({
+      method: RequestMethod.Post,
+      url: 'https://api.themoviedb.org/3/movie/' + movieId.toString() + '/rating?' + this.apiKey + this.sessionId,
+      headers: headers,
+      body: JSON.stringify(data)
+    });
+
+    return this.http.request(new Request(requestOptions))
       .map(res => res.json());
   }
 

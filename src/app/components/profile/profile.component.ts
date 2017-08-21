@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   avatar: string;
 
   hasVotedMovies = false;
+  isLoading = true;
 
   userVotedMovies: Movie[];
 
@@ -24,6 +25,11 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
+
     this.userService.getUserProfile()
       .subscribe(data => {
         this.user = data;

@@ -4,27 +4,32 @@
 <p class="lead">Los datos de tu perfil en TheMovieDB</p>
 <br>
 
-<div class="card-deck">
-  <div class="card col-md-2 col-lg-2 col-xl-2 border-0">
-    <img class="rounded float-center" src="https://www.themoviedb.org/assets/static_cache/281f6d241d2971b514806517d5b9dd84/images/v4/logos/powered-by-square-green.svg" alt="Sin Imagen Disponible"
-      width="100%" height="100%">
-  </div>
-  <div class="card col-md-9 col-lg-9git col-xl-9 border-0">
-    <div class="card-block">
-      <h2 class="card-title"><strong>Usuario:</strong> {{ user?.username }} </h2>
-      <h2 class="card-text"><strong>Nombre:</strong> {{ user?.name }}</h2>
-    </div>
-  </div>
+<div *ngIf="isLoading" class="mt-5 text-center">
+  <h2><strong><i class="fa fa-spinner fa-pulse fa-fw"></i>&nbsp;&nbsp;&nbsp;Cargando...</strong></h2>
 </div>
 
-<div class="mt-5" *ngIf="hasVotedMovies">
-    <h2><strong>Mis Puntuaciones:</strong></h2>
+<div *ngIf="!isLoading">
+  <div class="card-deck">
+    <div class="card col-md-2 col-lg-2 col-xl-2 border-0">
+      <img class="rounded float-center" src="https://www.themoviedb.org/assets/static_cache/281f6d241d2971b514806517d5b9dd84/images/v4/logos/powered-by-square-green.svg"
+        alt="Sin Imagen Disponible" width="100%" height="100%">
+    </div>
+    <div class="card col-md-9 col-lg-9git col-xl-9 border-0">
+      <div class="card-block">
+        <h2 class="card-title"><strong>Usuario:</strong> {{ user?.username }} </h2>
+        <h2 class="card-text"><strong>Nombre:</strong> {{ user?.name }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5" *ngIf="hasVotedMovies">
+    <h2><strong>Mis Valoraciones:</strong></h2>
 
     <table class="table borderless mt-3">
       <thead>
         <th>Película</th>
-        <th>Puntuación General</th>
-        <th>Mi Puntuación</th>
+        <th>Valoración General</th>
+        <th>Mi Valoración</th>
       </thead>
       <tbody>
         <tr *ngFor="let movie of userVotedMovies">
@@ -41,3 +46,4 @@
       </tbody>
     </table>
   </div>
+</div>

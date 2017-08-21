@@ -19,29 +19,34 @@
     </div>
   </div>
 
-  <div class="mt-5">
-    <div class="row">
-      <div class="col">
-        <h2><strong>Puntuación General:</strong> {{ movie.vote_average }}</h2>
-      </div>
-      <div *ngIf="authService.isLoggedIn() && userHasVoted" class="col">
-        <h2><strong>Mi puntuación:</strong> {{ userRating }}</h2>
-      </div>
-      <div *ngIf="authService.isLoggedIn() && !userHasVoted" class="col">
-        <p>No has puntuado.</p>
-      </div>
-      <div *ngIf="!authService.isLoggedIn()" class="col">
-        <p>Hay que logearse.</p>
-      </div>
-      <button *ngIf="authService.isLoggedIn() && userHasVoted && !volverPuntuar" type="button" class="btn btn-primary" (click)="onClickVolverPuntuar()">Volver a Puntuar</button>
-      <form *ngIf="(authService.isLoggedIn() && !userHasVoted) || (authService.isLoggedIn() && volverPuntuar)" class="form-inline">
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></button>
-          <button type="button" class="btn btn-secondary">Puntuar</button>
-          <button type="button" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button>
-        </div>
-      </form>
+  <div *ngIf="isLoading" class="mt-5 text-center">
+    <h2><i class="fa fa-spinner fa-pulse fa-fw"></i>&nbsp;&nbsp;&nbsp;Cargando...</h2>
+  </div>
+
+  <div *ngIf="!isLoading" class="row mt-5">
+    <div class="col">
+      <h2><strong>Valoración General: </strong>{{ movie.vote_average }}&nbsp;<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i></h2>
     </div>
+    <div *ngIf="authService.isLoggedIn() && userHasVoted" class="col">
+      <h2><strong>Mi Valoración:</strong> {{ userRating }}&nbsp;<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i></h2>
+    </div>
+    <div *ngIf="authService.isLoggedIn() && !userHasVoted" class="col">
+      <h2><strong>Aún no has valorado.</strong></h2>
+    </div>
+    <div *ngIf="!authService.isLoggedIn()" class="col">
+      <h2><strong>Para valorar debes <a routerLink="/identify">Iniciar Sesión.</a></strong></h2>
+    </div>
+    <button *ngIf="authService.isLoggedIn() && userHasVoted && !volverPuntuar" type="button" class="btn btn-primary" (click)="onClickVolverPuntuar()">Cambiar Mi Valoración</button>
+    <form *ngIf="(authService.isLoggedIn() && !userHasVoted) || (authService.isLoggedIn() && volverPuntuar)" class="form-inline">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-danger" [disabled]="minLimit" [ngClass]="btnMinusClass" (click)="onClickMinus()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-secondary fixed" [disabled]="sendingUserRating" (click)="onClickRate()">
+          <span *ngIf="!sendingUserRating">Valorar = {{ currentValue }}</span>
+          <span *ngIf="sendingUserRating"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+        </button>
+        <button type="button" class="btn btn-success" [disabled]="maxLimit" [ngClass]="btnPlusClass" (click)="onClickPlus()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+      </div>
+    </form>
   </div>
 
 
