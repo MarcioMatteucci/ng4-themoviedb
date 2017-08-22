@@ -24,6 +24,11 @@
   </div>
 
   <div *ngIf="!isLoading" class="row mt-5">
+    <div *ngIf="authService.isLoggedIn()" class="col-lg-1 col-md-1 col-sm-1">
+      <button type="button" class="btn btn-outline-primary watchlist" (click)="onClickWatchlist()">
+        <h2><i class="fa fa-bookmark-o" aria-hidden="true" [style.color]="colorWatch"></i></h2>
+      </button>
+    </div>
     <div class="col">
       <h2><strong>Valoración General: </strong>{{ movie.vote_average }}&nbsp;<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i></h2>
     </div>

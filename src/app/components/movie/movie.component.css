@@ -1,3 +1,8 @@
 .fixed {
     width: 120px;
 }
+
+.watchlist{
+    border-radius: 50%;
+     cursor: pointer;
+}

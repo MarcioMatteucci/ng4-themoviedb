@@ -18,6 +18,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
+  sendingUserWatchlist: boolean;
 
   id: string;
   movie: Movie;
@@ -30,6 +31,7 @@ export class MovieComponent implements OnInit {
   movieId;
   userRating;
   userHasVoted;
+  userWatchlist;
   volverPuntuar = false;
   isLoading = true;
   currentValue = 5;
@@ -37,6 +39,7 @@ export class MovieComponent implements OnInit {
   btnPlusClass;
   maxLimit;
   minLimit;
+  colorWatch;
   sendingUserRating = false;
 
   constructor(
@@ -71,7 +74,7 @@ export class MovieComponent implements OnInit {
           this.toastr.error('Algo salió mal, vuelve a intentar', 'Error!');
         }
       });
-  }
+  } 
 
   onClickPlus() {
     this.currentValue = this.currentValue + 0.5;
@@ -93,11 +96,39 @@ export class MovieComponent implements OnInit {
     }
   }
 
+  onClickWatchlist() {
+    // console.log(this.currentValue);
+    this.sendingUserWatchlist = true;
+
+    this.userService.setMovieWatchlist(this.movieId,this.userWatchlist)
+      .subscribe(data => {
+        // console.log(data);
+        if ( data.status_code === 12|| data.status_code === 1) {
+          setTimeout(() => {
+            this.toastr.success('Agregaste la película a tu watchlist', 'Exito!');           
+            this.userWatchlist = true;
+            this.colorWatch='red';
+            this.sendingUserWatchlist = false;
+          }, 1000);
+        }else if(data.status_code === 13){
+          setTimeout(() => {
+            this.toastr.success('Removiste la película a tu watchlist', 'Exito!');           
+            this.userWatchlist = false;
+            this.colorWatch='black';
+            this.sendingUserWatchlist = false;
+          }, 1000);
+        }       
+        else {
+          this.toastr.error('Algo salió mal, vuelve a intentar', 'Error!');
+        }
+      });
+  }
+
   ngOnInit() {
 
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000);
+    }, 1000);
 
     this.route.params.subscribe(params => {
       this.movieId = +params['id'];
@@ -112,6 +143,19 @@ export class MovieComponent implements OnInit {
             // console.log(this.userRating);
           } else {
             this.userHasVoted = false;
+          }
+        });
+
+      this.userService.getUserWatchlistMovies()
+        .subscribe(data => { console.log(data.results);
+          if (data.results.find(movie => movie.id === this.movieId)) {
+            this.userWatchlist = true;
+            this.colorWatch='red';
+            console.log(this.userWatchlist);
+          } else {
+            this.userWatchlist = false;
+            console.log(this.userWatchlist);
+            this.colorWatch='black';
           }
         });
     }

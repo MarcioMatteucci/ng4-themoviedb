@@ -10,11 +10,13 @@ export class UserService {
   domain = 'https://api.themoviedb.org/3';
   typeAccount = '/account?';
   typeVotedMovies = '/account/{account_id}/rated/movies?';
+  typeWatchlistMovies = '/account/{account_id}/watchlist/movies?';
   apiKey = 'api_key=a1f9c26ac26edcec7f8c8237a061f2d7';
   sessionId = '&session_id=' + localStorage.getItem('session_id');
 
   private userProfileUrl;
   private userVotedMovies;
+  private userWatchlistMovies;
 
   constructor(
     private http: Http
@@ -34,6 +36,15 @@ export class UserService {
     // tslint:disable-next-line:max-line-length
     this.userVotedMovies = this.domain + this.typeVotedMovies + this.apiKey + '&language=es-ES' + this.sessionId + '&sort_by=created_at.asc&page=1';
     return this.http.get(this.userVotedMovies)
+      .map(res => res.json());
+  }
+
+   // https://api.themoviedb.org/3/account/{account_id}/watchlist/movies?api_key=<<>>&language=es-ES&session_id=<<>>&sort_by=created_at.asc&page=1
+   getUserWatchlistMovies() {
+    // tslint:disable-next-line:max-line-length
+    this.userWatchlistMovies = this.domain + this.typeWatchlistMovies + this.apiKey + '&language=es-ES' + this.sessionId + '&sort_by=created_at.asc&page=1';
+    console.log(this.sessionId);
+    return this.http.get(this.userWatchlistMovies)
       .map(res => res.json());
   }
 
@@ -57,5 +68,28 @@ export class UserService {
     return this.http.request(new Request(requestOptions))
       .map(res => res.json());
   }
+
+    // https://api.themoviedb.org/3/account/{account_id}/watchlist?api_key=<<>>&session_id=<<>>
+    setMovieWatchlist(movieId: number, watchlist:boolean) {
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+  
+      // no hace falta el .toString()
+      const data = {
+        "media_type": "movie",
+        "media_id": movieId,
+        "watchlist": !watchlist
+      };
+  
+      const requestOptions = new RequestOptions({
+        method: RequestMethod.Post,
+        url: 'https://api.themoviedb.org/3/account/{account_id}/watchlist?' + this.apiKey + this.sessionId,
+        headers: headers,
+        body: JSON.stringify(data)
+      });
+  
+      return this.http.request(new Request(requestOptions))
+        .map(res => res.json());
+    }
 
 }
