@@ -5,4 +5,10 @@
 .watchlist{
     border-radius: 50%;
      cursor: pointer;
+     border-color: transparent;
+}
+
+.watchlist:hover{
+    background-color: transparent;
+    border-color: transparent;
 }
