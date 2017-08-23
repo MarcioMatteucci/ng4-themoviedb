@@ -75,7 +75,7 @@ export class MovieComponent implements OnInit {
           this.toastr.error('Algo salió mal, vuelve a intentar', 'Error!');
         }
       });
-  } 
+  }
 
   onClickPlus() {
     this.currentValue = this.currentValue + 0.5;
@@ -101,27 +101,26 @@ export class MovieComponent implements OnInit {
     // console.log(this.currentValue);
     this.sendingUserWatchlist = true;
 
-    this.userService.setMovieWatchlist(this.movieId,this.userWatchlist)
+    this.userService.setMovieWatchlist(this.movieId, this.userWatchlist)
       .subscribe(data => {
         // console.log(data);
-        if ( data.status_code === 12|| data.status_code === 1) {
+        if ( data.status_code === 12 || data.status_code === 1) {
           setTimeout(() => {
-            this.toastr.success('Agregaste la película a tu watchlist', 'Exito!');   
-            this.textWatchlist="Remover de watchlist";
+            this.toastr.success('Agregaste la película a tu watchlist', 'Exito!');
+            this.textWatchlist = 'Remover de watchlist';
             this.userWatchlist = true;
-            this.colorWatch='red';
+            this.colorWatch = 'red';
             this.sendingUserWatchlist = false;
           }, 1000);
-        }else if(data.status_code === 13){
+        }else if (data.status_code === 13) {
           setTimeout(() => {
-            this.toastr.success('Removiste la película a tu watchlist', 'Exito!');           
+            this.toastr.success('Removiste la película a tu watchlist', 'Exito!');
             this.userWatchlist = false;
-            this.textWatchlist="Agregar a watchlist";
-            this.colorWatch='#07d407';
+            this.textWatchlist = 'Agregar a watchlist';
+            this.colorWatch = '#07d407';
             this.sendingUserWatchlist = false;
           }, 1000);
-        }       
-        else {
+        } else {
           this.toastr.error('Algo salió mal, vuelve a intentar', 'Error!');
         }
       });
@@ -153,14 +152,14 @@ export class MovieComponent implements OnInit {
         .subscribe(data => { console.log(data.results);
           if (data.results.find(movie => movie.id === this.movieId)) {
             this.userWatchlist = true;
-            this.colorWatch='red';
-            this.textWatchlist="Remover de watchlist";
+            this.colorWatch = 'red';
+            this.textWatchlist = 'Remover de watchlist';
             console.log(this.userWatchlist);
           } else {
             this.userWatchlist = false;
             console.log(this.userWatchlist);
-            this.textWatchlist="Agregar a watchlist";
-            this.colorWatch='#07d407';
+            this.textWatchlist = 'Agregar a watchlist';
+            this.colorWatch = '#07d407';
           }
         });
     }
