@@ -5,10 +5,21 @@
 .watchlist{
     border-radius: 50%;
      cursor: pointer;
-     border-color: transparent;
+     border-color: transparent;   
 }
 
 .watchlist:hover{
     background-color: transparent;
     border-color: transparent;
 }
+
+.watchlist:focus, .btn.focus{
+    -webkit-box-shadow: 0 0 0 2px transparent;
+    box-shadow: 0 0 0 2px transparent
+}
+
+.inline{
+    display: inline;
+    padding-left: 0px;
+}
+

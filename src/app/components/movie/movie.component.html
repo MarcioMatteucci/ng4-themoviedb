@@ -9,7 +9,14 @@
     </div>
     <div class="card col-md-9 col-lg-9git col-xl-9 border-0">
       <div class="card-block">
-        <h1 class="card-title"><a href="https://www.themoviedb.org/movie/{{ movie.id }}" target="_blank"><strong>{{ movie.title }}</strong></a></h1>
+        <h1 class="card-title">
+          <a href="https://www.themoviedb.org/movie/{{ movie.id }}" target="_blank"><strong>{{ movie.title }}</strong></a>
+          <div *ngIf="authService.isLoggedIn()" class="col-lg-1 col-md-1 col-sm-1 inline" data-toggle="tooltip" data-placement="right" title="Watchlist">
+              <button type="button" class="btn btn-outline-primary watchlist" (click)="onClickWatchlist()" > 
+                <h2><i class="fa fa-bookmark" aria-hidden="true" [style.color]="colorWatch"></i></h2>
+              </button>
+            </div>
+        </h1>
         <h5 class="card-subtitle mb-2 text-muted">{{ movie.original_title }}</h5>
         <p class="card-text"><strong>Sinopsis:</strong> {{ movie.overview }}</p>
         <p class="card-text"><strong>Director:</strong> {{ director }}</p>
@@ -23,12 +30,7 @@
     <h2><i class="fa fa-spinner fa-pulse fa-fw"></i>&nbsp;&nbsp;&nbsp;Cargando...</h2>
   </div>
 
-  <div *ngIf="!isLoading" class="row mt-5">
-    <div *ngIf="authService.isLoggedIn()" class="col-lg-1 col-md-1 col-sm-1">
-      <button type="button" class="btn btn-outline-primary watchlist" (click)="onClickWatchlist()">
-        <h2><i class="fa fa-bookmark-o" aria-hidden="true" [style.color]="colorWatch"></i></h2>
-      </button>
-    </div>
+  <div *ngIf="!isLoading" class="row mt-5">   
     <div class="col">
       <h2><strong>Valoración General: </strong>{{ movie.vote_average }}&nbsp;<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i></h2>
     </div>
