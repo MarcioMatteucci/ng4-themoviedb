@@ -117,7 +117,7 @@ export class MovieComponent implements OnInit {
             this.toastr.success('Removiste la película a tu watchlist', 'Exito!');           
             this.userWatchlist = false;
             this.textWatchlist="Agregar a watchlist";
-            this.colorWatch='black';
+            this.colorWatch='#07d407';
             this.sendingUserWatchlist = false;
           }, 1000);
         }       
@@ -160,7 +160,7 @@ export class MovieComponent implements OnInit {
             this.userWatchlist = false;
             console.log(this.userWatchlist);
             this.textWatchlist="Agregar a watchlist";
-            this.colorWatch='black';
+            this.colorWatch='#07d407';
           }
         });
     }

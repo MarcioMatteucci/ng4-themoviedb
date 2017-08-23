@@ -3,24 +3,20 @@
 }
 
 .watchlist{
-    border-radius: 50%;
-     cursor: pointer;
-     border-color: transparent;   
-     padding-right: 0px;
+    cursor: pointer;
 }
 
-.watchlist:hover{
-    background-color: transparent;
-    border-color: transparent;
+.font-size{
+    font-size: unset;
 }
 
-.watchlist:focus, .btn.focus{
-    -webkit-box-shadow: 0 0 0 2px transparent;
-    box-shadow: 0 0 0 2px transparent
+.i-class{
+   
+    font-size: x-large;
 }
 
 .inline{
     display: inline;
-    padding-left: 0px;
+    padding-left: 5px;
 }
 
