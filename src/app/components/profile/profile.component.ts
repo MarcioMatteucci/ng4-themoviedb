@@ -11,14 +11,17 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  
 
   user: User;
   avatar: string;
 
   hasVotedMovies = false;
+  hasWatchlistMovies = false;
   isLoading = true;
 
   userVotedMovies: Movie[];
+  userWatchlistMovies : Movie[];
 
   constructor(
     private userService: UserService
@@ -44,6 +47,16 @@ export class ProfileComponent implements OnInit {
           this.hasVotedMovies = true;
           // console.log('tiene pelis puntuadas');
           this.userVotedMovies = data.results;
+          // console.log(this.userVotedMovies);
+        }
+      });
+
+      this.userService.getUserWatchlistMovies()
+      .subscribe(data => {
+        if (data.total_results !== 0) {
+          this.hasWatchlistMovies = true;
+          // console.log('tiene pelis puntuadas');
+          this.userWatchlistMovies = data.results;
           // console.log(this.userVotedMovies);
         }
       });

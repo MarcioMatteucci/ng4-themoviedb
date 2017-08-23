@@ -46,4 +46,25 @@
       </tbody>
     </table>
   </div>
+
+  <div class="mt-5" *ngIf="hasWatchlistMovies">
+    <h2><strong>Watchlist:</strong></h2>
+
+    <table class="table borderless mt-3">
+      <thead>
+        <th>Imagen</th>
+        <th>Película</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of userWatchlistMovies">
+          <td class="align-middle">
+              <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w45{{movie.poster_path}}" width="60px" height="90px" alt="Sin imagen" >
+          </td>
+          <td class="align-middle">
+            <h5><a routerLink="/movie/{{movie.id}}" routerLinkActive="active">{{ movie.title }}</a></h5>
+          </td>         
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
