@@ -6,6 +6,7 @@
     border-radius: 50%;
      cursor: pointer;
      border-color: transparent;   
+     padding-right: 0px;
 }
 
 .watchlist:hover{

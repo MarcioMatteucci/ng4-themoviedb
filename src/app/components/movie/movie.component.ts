@@ -40,6 +40,7 @@ export class MovieComponent implements OnInit {
   maxLimit;
   minLimit;
   colorWatch;
+  textWatchlist;
   sendingUserRating = false;
 
   constructor(
@@ -105,7 +106,8 @@ export class MovieComponent implements OnInit {
         // console.log(data);
         if ( data.status_code === 12|| data.status_code === 1) {
           setTimeout(() => {
-            this.toastr.success('Agregaste la película a tu watchlist', 'Exito!');           
+            this.toastr.success('Agregaste la película a tu watchlist', 'Exito!');   
+            this.textWatchlist="Remover de watchlist";
             this.userWatchlist = true;
             this.colorWatch='red';
             this.sendingUserWatchlist = false;
@@ -114,6 +116,7 @@ export class MovieComponent implements OnInit {
           setTimeout(() => {
             this.toastr.success('Removiste la película a tu watchlist', 'Exito!');           
             this.userWatchlist = false;
+            this.textWatchlist="Agregar a watchlist";
             this.colorWatch='black';
             this.sendingUserWatchlist = false;
           }, 1000);
@@ -151,10 +154,12 @@ export class MovieComponent implements OnInit {
           if (data.results.find(movie => movie.id === this.movieId)) {
             this.userWatchlist = true;
             this.colorWatch='red';
+            this.textWatchlist="Remover de watchlist";
             console.log(this.userWatchlist);
           } else {
             this.userWatchlist = false;
             console.log(this.userWatchlist);
+            this.textWatchlist="Agregar a watchlist";
             this.colorWatch='black';
           }
         });
