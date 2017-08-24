@@ -73,7 +73,7 @@ export class MovieComponent implements OnInit {
             this.userHasVoted = true;
             this.volverPuntuar = false;
             this.sendingUserRating = false;
-          }, 1500);
+          }, 1000);
         } else {
           this.toastr.error('Algo salió mal, vuelve a intentar', 'Error!');
         }
@@ -115,7 +115,7 @@ export class MovieComponent implements OnInit {
             this.iconWatchlist = 'fa fa-eye-slash';
             this.btnWatchlist = 'btn btn-danger';
             this.userWatchlist = true;
-          }, 1500);
+          }, 1000);
         } else if (data.status_code === 13) {
           setTimeout(() => {
             this.toastr.success('Quitaste la Película a tu Watchlist', 'Exito!');
@@ -124,7 +124,7 @@ export class MovieComponent implements OnInit {
             this.iconWatchlist = 'fa fa-eye';
             this.btnWatchlist = 'btn btn-success';
             this.sendingUserWatchlist = false;
-          }, 1500);
+          }, 1000);
         } else {
           this.toastr.error('Algo salió mal, vuelve a intentar', 'Error!');
         }
