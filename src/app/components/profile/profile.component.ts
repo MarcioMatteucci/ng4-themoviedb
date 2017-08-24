@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
 
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000);
+    }, 1500);
 
     this.userService.getUserProfile()
       .subscribe(data => {

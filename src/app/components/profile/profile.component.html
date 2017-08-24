@@ -5,7 +5,7 @@
 <br>
 
 <div *ngIf="isLoading" class="mt-5 text-center">
-  <h2><strong><i class="fa fa-spinner fa-pulse fa-fw"></i>&nbsp;&nbsp;&nbsp;Cargando...</strong></h2>
+  <h2><i class="fa fa-spinner fa-pulse fa-fw"></i>&nbsp;&nbsp;&nbsp;Cargando...</h2>
 </div>
 
 <div *ngIf="!isLoading">
@@ -37,10 +37,10 @@
             <h5><a routerLink="/movie/{{movie.id}}" routerLinkActive="active">{{ movie.title }}</a></h5>
           </td>
           <td class="align-middle">
-            <h5>{{ movie.vote_average }}</h5>
+            <h5>{{ movie.vote_average  | number:'1.1-1' }}</h5>
           </td>
           <td class="align-middle">
-            <h5><strong>{{ movie.rating }}</strong></h5>
+            <h5><strong>{{ movie.rating  | number:'1.1-1' }}</strong></h5>
           </td>
         </tr>
       </tbody>

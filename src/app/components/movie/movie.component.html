@@ -11,15 +11,14 @@
       <div class="card-block">
         <h1 class="card-title">
           <a href="https://www.themoviedb.org/movie/{{ movie.id }}" target="_blank"><strong>{{ movie.title }}</strong></a>
-          <div *ngIf="authService.isLoggedIn()" class="col-lg-1 col-md-1 col-sm-1 inline" data-toggle="tooltip" data-placement="right" title="Watchlist">
-              <button type="button" class="btn btn-primary watchlist" [disabled]="sendingUserWatchlist" (click)="onClickWatchlist()" > 
-                <h2 class="font-size">
-                  <i *ngIf="!sendingUserWatchlist" class="fa fa-bookmark i-class" aria-hidden="true" [style.color]="colorWatch"></i>
-                  <i *ngIf="sendingUserWatchlist" class="fa fa-spinner fa-pulse fa-fw i-class"></i>
-                  {{textWatchlist}}</h2>
-              </button>
-              
-            </div>
+          <div *ngIf="authService.isLoggedIn() && !isLoading" class="col-lg-1 col-md-1 col-sm-1 inline" data-toggle="tooltip" data-placement="right"
+            title="Watchlist">
+            <button type="button" [ngClass]="btnWatchlist" class="btn-sm watchlist" [disabled]="sendingUserWatchlist" (click)="onClickWatchlist()">
+              <i *ngIf="!sendingUserWatchlist" [ngClass]="iconWatchlist" aria-hidden="true"></i>
+              <i *ngIf="sendingUserWatchlist" class="fa fa-spinner fa-pulse fa-fw"></i>
+                &nbsp;{{textWatchlist}}
+            </button>
+          </div>
         </h1>
         <h5 class="card-subtitle mb-2 text-muted">{{ movie.original_title }}</h5>
         <p class="card-text"><strong>Sinopsis:</strong> {{ movie.overview }}</p>
@@ -34,12 +33,13 @@
     <h2><i class="fa fa-spinner fa-pulse fa-fw"></i>&nbsp;&nbsp;&nbsp;Cargando...</h2>
   </div>
 
-  <div *ngIf="!isLoading" class="row mt-5">   
+  <div *ngIf="!isLoading" class="row mt-5">
     <div class="col">
-      <h2><strong>Valoración General: </strong>{{ movie.vote_average }}&nbsp;<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i></h2>
+      <h2><strong>Valoración General: </strong>{{ movie.vote_average | number:'1.1-1' }}&nbsp;<i class="fa fa-star" aria-hidden="true"
+          style="color: yellow;"></i></h2>
     </div>
     <div *ngIf="authService.isLoggedIn() && userHasVoted" class="col">
-      <h2><strong>Mi Valoración:</strong> {{ userRating }}&nbsp;<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i></h2>
+      <h2><strong>Mi Valoración:</strong> {{ userRating | number:'1.1-1' }}&nbsp;<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i></h2>
     </div>
     <div *ngIf="authService.isLoggedIn() && !userHasVoted" class="col">
       <h2><strong>Aún no has valorado.</strong></h2>
@@ -50,12 +50,12 @@
     <button *ngIf="authService.isLoggedIn() && userHasVoted && !volverPuntuar" type="button" class="btn btn-primary" (click)="onClickVolverPuntuar()">Cambiar Mi Valoración</button>
     <form *ngIf="(authService.isLoggedIn() && !userHasVoted) || (authService.isLoggedIn() && volverPuntuar)" class="form-inline">
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-danger" [disabled]="minLimit" [ngClass]="btnMinusClass" (click)="onClickMinus()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-danger" [disabled]="minLimit || sendingUserRating" [ngClass]="btnMinusClass" (click)="onClickMinus()"><i class="fa fa-minus" aria-hidden="true"></i></button>
         <button type="button" class="btn btn-secondary fixed" [disabled]="sendingUserRating" (click)="onClickRate()">
-          <span *ngIf="!sendingUserRating">Valorar = {{ currentValue }}</span>
+          <span *ngIf="!sendingUserRating">Valorar = {{ currentValue | number:'1.1-1' }}</span>
           <span *ngIf="sendingUserRating"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
         </button>
-        <button type="button" class="btn btn-success" [disabled]="maxLimit" [ngClass]="btnPlusClass" (click)="onClickPlus()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-success" [disabled]="maxLimit || sendingUserRating" [ngClass]="btnPlusClass" (click)="onClickPlus()"><i class="fa fa-plus" aria-hidden="true"></i></button>
       </div>
     </form>
   </div>

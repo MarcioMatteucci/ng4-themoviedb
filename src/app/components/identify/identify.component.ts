@@ -37,7 +37,7 @@ export class IdentifyComponent implements OnInit {
 
     setTimeout(() => {
       this.authenticateService.goToLogIn(this.request_token);
-    }, 3000);
+    }, 2000);
   }
 
   ngOnInit() {
