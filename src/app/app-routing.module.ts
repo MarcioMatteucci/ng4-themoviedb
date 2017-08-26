@@ -9,6 +9,7 @@ import { IdentifyComponent } from './components/identify/identify.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SearchTvComponent } from './components/search-tv/search-tv.component';
 
 // Guards
 import { AuthGuard } from './guards/auth.guards';
@@ -50,6 +51,10 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'search-tv',
+    component: SearchTvComponent
   },
   // Cualquier Ruta incorrecta manda al Home (Siempre abajo de todas las demas)
   {
