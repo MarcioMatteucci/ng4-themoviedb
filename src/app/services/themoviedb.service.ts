@@ -21,6 +21,8 @@ export class ThemoviedbService {
   private movieUrl: string;
   private reviewsUrl: string;
   private castUrl: string;
+  private searchTvUrl: string;
+  private tvShowUrl: string;
 
   constructor(
     private http: Http
@@ -59,16 +61,18 @@ export class ThemoviedbService {
 
   // TV Shows
 
-  // https://api.themoviedb.org/3/search/tv?api_key=<<api_key>>&language=en-US&page=1
+  // https://api.themoviedb.org/3/search/tv?api_key=<<api_key>>&language=es-ES&query=name&page=1
   searchTvShow(str: string) {
     // tslint:disable-next-line:max-line-length
-    this.searchUrl = this.domain + this.typeSearchTv + this.apiKey + this.languageEs + this.query + str + this.page1;
-    return this.http.get(this.searchUrl)
+    this.searchTvUrl = this.domain + this.typeSearchTv + this.apiKey + this.languageEs + this.query + str + this.page1;
+    return this.http.get(this.searchTvUrl)
       .map(res => res.json());
   }
 
-  // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
+  // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=es-ES
   getTvShowById(tvShowId: string) {
-    this.searchUrl = this. domain + this.typeTvById + this.apiKey + tvShowId + '?' + this.apiKey + this.languageEs;
+    this.tvShowUrl = this. domain + this.typeTvById + tvShowId + '?' + this.apiKey + this.languageEs;
+    return this.http.get(this.tvShowUrl)
+    .map(res => res.json());
   }
 }
