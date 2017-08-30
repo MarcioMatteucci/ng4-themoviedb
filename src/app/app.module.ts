@@ -22,6 +22,7 @@ import { IdentifyComponent } from './components/identify/identify.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CastComponent } from './components/cast/cast.component';
 
 // Services
 import { ThemoviedbService } from './services/themoviedb.service';
@@ -44,6 +45,7 @@ import { NotAuthGuard } from './guards/notAuth.guards';
     MovieComponent,
     LoginComponent,
     ProfileComponent,
+    CastComponent,
   ],
   imports: [
     BrowserModule,
