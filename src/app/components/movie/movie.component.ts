@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CastComponent } from '../cast/cast.component';
 
 import { ThemoviedbService } from '../../services/themoviedb.service';
 import { AuthenticateService } from '../../services/authenticate.service';
