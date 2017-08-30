@@ -1,0 +1,54 @@
+<div *ngIf="tvshow">
+  <div class="card-deck">
+    <div *ngIf="tvshow.poster_path" class="card col-md-3 col-lg-3 col-xl-3 border-0">
+      <a href="http://image.tmdb.org/t/p/original/{{ tvshow.poster_path }}" target="_blank">
+        <img class="img-fluid rounded float-center" src="http://image.tmdb.org/t/p/w185/{{ tvshow.poster_path }}" alt="Sin Imagen Disponible"
+        width="100%" height="100%">
+      </a>
+    </div>
+    <div class="card col-md-9 col-lg-9 col-xl-9 border-0">
+      <div class="card-block">
+        <h1 class="card-title">
+          <a href="https://www.themoviedb.org/tv/{{ tvshow.id }}" target="_blank"><strong>{{ tvshow.name }}</strong></a>
+        </h1>
+        <h5 class="card-subtitle mb-2 text-muted">{{ tvshow.original_name }}</h5>
+        <p class="card-text"><strong>Sinopsis:</strong> {{ tvshow.overview }}</p>
+        <p class="card-text"><strong>Géneros:</strong> <span *ngFor="let genre of genres">{{ genre.name }}.&nbsp;</span></p>
+        <p class="card-text"><strong>Fecha de la primera emisión:</strong> {{ tvshow.first_air_date | date:'dd/MM/yyyy' }}</p>
+        <p *ngIf="!tvshow.in_production" class="card-text"><strong>Fecha de la última emisión:</strong> {{ tvshow.last_air_date | date:'dd/MM/yyyy' }}</p>
+        <p *ngIf="tvshow.in_production"><strong>Continúa emitiendose actualmente</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col">
+      <h2><strong>Valoración General: </strong>{{ tvshow.vote_average | number:'1.1-1' }}&nbsp;<i class="fa fa-star" aria-hidden="true"
+          style="color: yellow;"></i></h2>
+    </div>
+  </div>
+
+
+  <div class="mt-5" *ngIf="hasCrew">
+    <h2><strong>Cast:</strong></h2>
+
+    <table class="table borderless mt-3">
+      <thead>
+        <th>Imagen</th>
+        <th>Actor</th>
+        <th>Personaje</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cas of cast ; let i = index">
+          <td *ngIf="i<11" class="align-middle"><img src="https://image.tmdb.org/t/p/w45{{ cas.profile_path }}" width="50px" height="70px" alt="Sin imagen"></td>
+          <td *ngIf="i<11" class="align-middle">
+            <h5>{{ cas.name }}</h5>
+          </td>
+          <td *ngIf="i<11" class="align-middle">
+            <h5>{{ cas.character }}</h5>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

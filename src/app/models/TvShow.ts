@@ -9,6 +9,7 @@ export class TvShow {
     overview: string;
     first_air_date: string;
     last_air_date: string;
+    in_production: boolean;
     vote_average: number;
     rating?: number;
     genres: Genre[];

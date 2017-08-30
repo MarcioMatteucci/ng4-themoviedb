@@ -75,4 +75,12 @@ export class ThemoviedbService {
     return this.http.get(this.tvShowUrl)
     .map(res => res.json());
   }
+
+  // https://api.themoviedb.org/3/tv/{tv_id}/credits?api_key=<<api_key>>
+  getCastByTvShowId(tvShowId: string) {
+    this.castUrl = this.domain + this.typeTvById + tvShowId + '/credits?' + this.apiKey;
+    return this.http.get(this.castUrl)
+      .map(res => res.json());
+  }
+
 }
