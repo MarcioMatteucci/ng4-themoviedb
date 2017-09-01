@@ -13,7 +13,6 @@ export class AuthenticateService {
   appDomain = window.location.hostname;
   appPort = window.location.port;
   appProtocol = window.location.protocol;
-  redirectTo = '?redirect_to=' + this.appProtocol + '//' + this.appDomain + ':' + this.appPort + '/login';
 
   private tokenUrl;
   private sessionUrl;
@@ -31,7 +30,13 @@ export class AuthenticateService {
 
   // https://www.themoviedb.org/authenticate/{REQUEST_TOKEN}?redirect_to=http://www.yourapp.com/approved
   goToLogIn(request_token: string) {
-    window.location.href = this.authenticateDomain + request_token + this.redirectTo;
+    let redirectTo;
+    if (this.appPort === '4200') {
+      redirectTo = '?redirect_to=' + this.appProtocol + '//' + this.appDomain + ':' + this.appPort + '/login';
+    } else {
+      redirectTo = '?redirect_to=' + this.appProtocol + '//' + this.appDomain + '/ng4-themoviedb/login';
+    }
+    window.location.href = this.authenticateDomain + request_token + redirectTo;
   }
 
   // https://api.themoviedb.org/3/authentication/session/new?api_key=<<api_key>>&request_token=<<request_token>>
