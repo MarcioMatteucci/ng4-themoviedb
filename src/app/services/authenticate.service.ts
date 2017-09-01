@@ -10,7 +10,10 @@ export class AuthenticateService {
   typeToken = '/authentication/token/new?';
   typeSessionId = '/authentication/session/new?';
   authenticateDomain = 'https://www.themoviedb.org/authenticate/';
-  redirectTo = '?redirect_to=http://localhost:4200/login';
+  appDomain = window.location.hostname;
+  appPort = window.location.port;
+  appProtocol = window.location.protocol;
+  redirectTo = '?redirect_to=' + this.appProtocol + '//' + this.appDomain + ':' + this.appPort + '/login';
 
   private tokenUrl;
   private sessionUrl;
