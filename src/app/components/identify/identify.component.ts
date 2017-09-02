@@ -41,7 +41,7 @@ export class IdentifyComponent implements OnInit {
   }
 
   ngOnInit() {
-    localStorage.clear();
+    localStorage.removeItem('request_token');
   }
 
 }

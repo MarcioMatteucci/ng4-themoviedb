@@ -29,6 +29,11 @@ export class LoginComponent implements OnInit {
         this.session_id = data.session_id;
         this.authenticateService.storeSessionId(this.session_id);
         this.toastr.success('Tu sesión se ha iniciado', 'Exito!');
+        if (localStorage.getItem('redirectToMovie')) {
+          this.router.navigate([localStorage.getItem('redirectToMovie')]);
+        } else {
+          this.router.navigate(['/search']);
+        }
       });
   }
 

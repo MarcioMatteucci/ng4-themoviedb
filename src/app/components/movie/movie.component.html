@@ -44,7 +44,10 @@
       <h2><strong>Aún no has valorado.</strong></h2>
     </div>
     <div *ngIf="!authService.isLoggedIn()" class="col">
-      <h2><strong>Para valorar debes <a routerLink="/identify">Iniciar Sesión.</a></strong></h2>
+      <form class="form-inline">
+        <label class="h2">Para valorar debes&nbsp;&nbsp;&nbsp;</label>
+        <button type="button" class="btn btn-primary" (click)="logInFromMovie()"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Iniciar Sesión</button>
+      </form>
     </div>
     <button *ngIf="authService.isLoggedIn() && userHasVoted && !volverPuntuar" type="button" class="btn btn-primary" (click)="onClickVolverPuntuar()">Cambiar Mi Valoración</button>
     <form *ngIf="(authService.isLoggedIn() && !userHasVoted) || (authService.isLoggedIn() && volverPuntuar)" class="form-inline">

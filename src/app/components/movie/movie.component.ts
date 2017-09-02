@@ -54,6 +54,12 @@ export class MovieComponent implements OnInit {
     private toastr: ToastsManager
   ) { }
 
+  logInFromMovie() {
+    // console.log(window.location.pathname);
+    localStorage.setItem('redirectToMovie', window.location.pathname);
+    this.router.navigate(['/identify']);
+  }
+
   onClickVolverPuntuar() {
     this.volverPuntuar = true;
     this.currentValue = this.userRating;
@@ -207,6 +213,8 @@ export class MovieComponent implements OnInit {
             }
           });
       });
+
+    localStorage.removeItem('redirectToMovie');
   }
 
 }
