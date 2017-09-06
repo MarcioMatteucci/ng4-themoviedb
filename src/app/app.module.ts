@@ -25,6 +25,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SearchTvComponent } from './components/search-tv/search-tv.component';
 import { TvShowComponent } from './components/tv-show/tv-show.component';
 import { CastComponent } from './components/cast/cast.component';
+import { SearchComponent } from './components/search/search.component';
 
 // Services
 import { ThemoviedbService } from './services/themoviedb.service';
@@ -50,6 +51,7 @@ import { NotAuthGuard } from './guards/notAuth.guards';
     SearchTvComponent,
     TvShowComponent,
     CastComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

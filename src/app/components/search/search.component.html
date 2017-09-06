@@ -1,0 +1,22 @@
+<h1>
+  <strong>Buscá una película o serie:</strong>
+</h1>
+<hr>
+
+<p class="lead">Usa la aplicación Ng4TheMovieDB para encontrar tus películas y series favoritas <br> Accede a la base de datos de TheMovieDB</p>
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-primary active" (click)="setOption(1)">
+    <input type="radio" name="option" id="option1" [checked]="option === 1" autocomplete="off">
+    Películas
+  </label>
+  <label class="btn btn-primary" (click)="setOption(2)">
+    <input type="radio" name="option" id="option2" [checked]="option === 2" autocomplete="off">
+    Series
+  </label>
+</div>
+<div *ngIf="option === 1">
+  <app-search-movie></app-search-movie>
+</div>
+<div *ngIf="option === 2">
+  <app-search-tv></app-search-tv>
+</div>

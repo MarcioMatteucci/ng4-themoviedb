@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SearchTvComponent } from './components/search-tv/search-tv.component';
 import { TvShowComponent } from './components/tv-show/tv-show.component';
+import { SearchComponent } from './components/search/search.component';
 
 // Guards
 import { AuthGuard } from './guards/auth.guards';
@@ -28,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'search',
-    component: SearchMovieComponent
+    component: SearchComponent
   },
   {
     path: 'about',
@@ -52,10 +53,6 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'search-tv',
-    component: SearchTvComponent
   },
   {
     path: 'tv/:id',

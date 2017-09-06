@@ -16,7 +16,7 @@
         <p class="card-text"><strong>Géneros:</strong> <span *ngFor="let genre of genres">{{ genre.name }}.&nbsp;</span></p>
         <p class="card-text"><strong>Fecha de la primera emisión:</strong> {{ tvshow.first_air_date | date:'dd/MM/yyyy' }}</p>
         <p *ngIf="!tvshow.in_production" class="card-text"><strong>Fecha de la última emisión:</strong> {{ tvshow.last_air_date | date:'dd/MM/yyyy' }}</p>
-        <p *ngIf="tvshow.in_production"><strong>Continúa emitiendose actualmente</strong></p>
+        <p *ngIf="tvshow.in_production" class="card-text"><strong>Continúa emitiendose actualmente</strong></p>
       </div>
     </div>
   </div>

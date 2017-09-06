@@ -1,13 +1,7 @@
-<h1>
-  <strong>Buscá una Serie:</strong>
-</h1>
-<hr>
-<p class="lead">Usa la aplicación Ng4TheMovieDB para encontrar tus series favoritas <br> Accede a la base de datos de series de TheMovieDB</p>
-
 <form>
   <div class="form-group">
     <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-film" aria-hidden="true"></i></span>
+      <span class="input-group-addon"><i class="fa fa-tv" aria-hidden="true"></i></span>
       <input type="text" autocomplete="off" name="searchString" placeholder="Ingrese el Título de una Serie..." class="form-control"
         [(ngModel)]="searchStr" (keyup)="searchTvShow()">
     </div>
@@ -17,12 +11,11 @@
 <div *ngIf="findSomething && searchStr !== ''">
   <div *ngFor="let tvshow of tvshows">
     <div class="card mb-1">
-      
       <div class="card-block">
         <img *ngIf="tvshow.poster_path" src="https://image.tmdb.org/t/p/w45{{tvshow.poster_path}}" width="60px" height="90px" alt="Sin imagen" >
         <h3 class="card-title"><a routerLink="/tv/{{tvshow.id}}" routerLinkActive="active"><strong>{{ tvshow.name }}</strong></a></h3>
         <p class="card-text my-1"><strong>Título Original: </strong> {{ tvshow.original_name }} </p>
-        <p class="card-text my-1"><strong>Estreno: </strong> {{ tvshow.first_air_date | date:'dd/MM/yyyy' }} </p>
+        <p class="card-text my-1"><strong>Fecha de la primera emisión:</strong> {{ tvshow.first_air_date | date:'dd/MM/yyyy' }} </p>
       </div>
     </div>
   </div>
