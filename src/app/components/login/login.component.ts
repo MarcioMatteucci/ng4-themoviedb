@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
         this.toastr.success('Tu sesión se ha iniciado', 'Exito!');
         if (localStorage.getItem('redirectToMovie')) {
           this.router.navigate([localStorage.getItem('redirectToMovie')]);
+        } else if (localStorage.getItem('redirectToTv')) {
+          this.router.navigate([localStorage.getItem('redirectToTv')]);
         } else {
           this.router.navigate(['/search']);
         }
