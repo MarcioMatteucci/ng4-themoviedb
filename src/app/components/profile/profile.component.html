@@ -22,49 +22,95 @@
     </div>
   </div>
 
-  <div class="mt-5" *ngIf="hasVotedMovies">
+  <div class="mt-5" *ngIf="hasVotedMovies || hasVotedTvShows">
     <h2><strong>Mis Valoraciones:</strong></h2>
-
-    <table class="table borderless mt-3">
-      <thead>
-        <th>Película</th>
-        <th>Valoración General</th>
-        <th>Mi Valoración</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let movie of userVotedMovies">
-          <td class="align-middle">
-            <h5><a routerLink="/movie/{{movie.id}}" routerLinkActive="active">{{ movie.title }}</a></h5>
-          </td>
-          <td class="align-middle">
-            <h5>{{ movie.vote_average  | number:'1.1-1' }}</h5>
-          </td>
-          <td class="align-middle">
-            <h5><strong>{{ movie.rating  | number:'1.1-1' }}</strong></h5>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div *ngIf="hasVotedMovies">
+      <h3>Películas</h3>
+      <table class="table borderless mt-3">
+        <thead>
+          <th>Película</th>
+          <th>Valoración General</th>
+          <th>Mi Valoración</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movie of userVotedMovies">
+            <td class="align-middle">
+              <h5><a routerLink="/movie/{{movie.id}}" routerLinkActive="active">{{ movie.title }}</a></h5>
+            </td>
+            <td class="align-middle">
+              <h5>{{ movie.vote_average  | number:'1.1-1' }}</h5>
+            </td>
+            <td class="align-middle">
+              <h5><strong>{{ movie.rating  | number:'1.1-1' }}</strong></h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="hasVotedTvShows">
+      <h3>Series</h3>
+      <table class="table borderless mt-3">
+        <thead>
+          <th>Serie</th>
+          <th>Valoración General</th>
+          <th>Mi Valoración</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tvshow of userVotedTvShows">
+            <td class="align-middle">
+              <h5><a routerLink="/tv/{{tvshow.id}}" routerLinkActive="active">{{ tvshow.name }}</a></h5>
+            </td>
+            <td class="align-middle">
+              <h5>{{ tvshow.vote_average  | number:'1.1-1' }}</h5>
+            </td>
+            <td class="align-middle">
+              <h5><strong>{{ tvshow.rating  | number:'1.1-1' }}</strong></h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="mt-5" *ngIf="hasWatchlistMovies">
+  <div class="mt-5" *ngIf="hasWatchlistMovies || hasWatchlistTvShows">
     <h2><strong>Watchlist:</strong></h2>
-
-    <table class="table borderless mt-3">
-      <thead>
-        <th>Imagen</th>
-        <th>Película</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let movie of userWatchlistMovies">
-          <td class="align-middle">
+    <div *ngIf="hasWatchlistMovies">
+      <h3>Películas</h3>
+      <table class="table borderless mt-3">
+        <thead>
+          <th>Imagen</th>
+          <th>Película</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movie of userWatchlistMovies">
+            <td class="align-middle">
               <img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w45{{movie.poster_path}}" width="60px" height="90px" alt="Sin imagen" >
-          </td>
-          <td class="align-middle">
-            <h5><a routerLink="/movie/{{movie.id}}" routerLinkActive="active">{{ movie.title }}</a></h5>
-          </td>         
-        </tr>
-      </tbody>
-    </table>
+            </td>
+            <td class="align-middle">
+              <h5><a routerLink="/movie/{{movie.id}}" routerLinkActive="active">{{ movie.title }}</a></h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="hasWatchlistTvShows">
+      <h3>Series</h3>
+      <table class="table borderless mt-3">
+        <thead>
+          <th>Imagen</th>
+          <th>Serie</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tvshow of userWatchlistTvShows">
+            <td class="align-middle">
+              <img *ngIf="tvshow.poster_path" src="https://image.tmdb.org/t/p/w45{{tvshow.poster_path}}" width="60px" height="90px" alt="Sin imagen" >
+            </td>
+            <td class="align-middle">
+              <h5><a routerLink="/tv/{{tvshow.id}}" routerLinkActive="active">{{ tvshow.name }}</a></h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

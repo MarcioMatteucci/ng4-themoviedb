@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../models/User';
 import { Movie } from '../../models/Movie';
+import { TvShow } from '../../models/TvShow';
 
 import { UserService } from '../../services/user.service';
 
@@ -11,17 +12,20 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  
 
   user: User;
   avatar: string;
 
   hasVotedMovies = false;
   hasWatchlistMovies = false;
+  hasVotedTvShows = false;
+  hasWatchlistTvShows = false;
   isLoading = true;
 
   userVotedMovies: Movie[];
   userWatchlistMovies : Movie[];
+  userVotedTvShows: TvShow[];
+  userWatchlistTvShows : TvShow[];
 
   constructor(
     private userService: UserService
@@ -49,15 +53,35 @@ export class ProfileComponent implements OnInit {
           this.userVotedMovies = data.results;
           // console.log(this.userVotedMovies);
         }
-      });
+      });     
 
-      this.userService.getUserWatchlistMovies()
+    this.userService.getUserWatchlistMovies()
       .subscribe(data => {
         if (data.total_results !== 0) {
           this.hasWatchlistMovies = true;
-          // console.log('tiene pelis puntuadas');
+          // console.log('tiene pelis en watchlist');
           this.userWatchlistMovies = data.results;
-          // console.log(this.userVotedMovies);
+          // console.log(this.userWatchlistMovies);
+        }
+      });
+
+      this.userService.getUserVotedTvShows()
+      .subscribe(data => {
+        if (data.total_results !== 0) {
+          this.hasVotedTvShows = true;
+          // console.log('tiene series puntuadas');
+          this.userVotedTvShows = data.results;
+          // console.log(this.userVotedTvShows);
+        }
+      });
+
+      this.userService.getUserWatchlistTvShows()
+      .subscribe(data => {
+        if (data.total_results !== 0) {
+          this.hasWatchlistTvShows = true;
+          // console.log('tiene series en whatchlist');
+          this.userWatchlistTvShows = data.results;
+          // console.log(this.userWatchlistTvShows);
         }
       });
   }
