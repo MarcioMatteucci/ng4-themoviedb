@@ -57,7 +57,7 @@ export class MovieComponent implements OnInit {
 
   logInFromMovie() {
     // console.log(window.location.pathname);
-    localStorage.setItem('redirectToMovie', window.location.pathname);
+    localStorage.setItem('redirectToMovie', '/movie/' + this.movieId);
     this.router.navigate(['/identify']);
   }
 
