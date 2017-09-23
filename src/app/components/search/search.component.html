@@ -5,15 +5,16 @@
 
 <p class="lead">Usa la aplicación Ng4TheMovieDB para encontrar tus películas y series favoritas <br> Accede a la base de datos de TheMovieDB</p>
 <div class="btn-group" data-toggle="buttons">
-  <label class="btn btn-primary active" (click)="setOption(1)">
+  <label class="btn btn-primary active fixed" (click)="setOption(1)">
     <input type="radio" name="option" id="option1" [checked]="option === 1" autocomplete="off">
-    Películas
+    <span *ngIf="option === 1"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;</span>Películas
   </label>
-  <label class="btn btn-primary" (click)="setOption(2)">
+  <label class="btn btn-primary fixed" (click)="setOption(2)">
     <input type="radio" name="option" id="option2" [checked]="option === 2" autocomplete="off">
-    Series
+    <span *ngIf="option === 2"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;</span>Series
   </label>
 </div>
+
 <div *ngIf="option === 1">
   <app-search-movie></app-search-movie>
 </div>
