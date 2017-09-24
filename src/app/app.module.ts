@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { MyToastOptions } from './my-toast-options';
 
+import { MarkdownModule } from 'angular2-markdown';
+
 // Routing Module
 import { AppRoutingModule } from './app-routing.module';
 
@@ -59,7 +61,8 @@ import { NotAuthGuard } from './guards/notAuth.guards';
     HttpModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    MarkdownModule.forRoot()
   ],
   providers: [
     ThemoviedbService,

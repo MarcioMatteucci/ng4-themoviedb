@@ -12,6 +12,7 @@ import { Review } from '../../models/Review';
 import { People } from '../../models/People';
 
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { MarkdownComponent } from 'angular2-markdown';
 
 @Component({
   selector: 'app-movie',

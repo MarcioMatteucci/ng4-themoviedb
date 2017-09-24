@@ -71,7 +71,7 @@
 
     <div *ngFor="let review of reviews">
       <blockquote class="blockquote">
-        <p class="mb-0"><small><em>{{ review.content }}</em></small></p>
+        <small class="mb-0"><em><markdown>{{ review.content }}</markdown></em></small>
         <footer class="blockquote-footer">Escrita por <cite title="Source Title"><strong>{{ review.author }}</strong></cite></footer>
       </blockquote>
     </div>
