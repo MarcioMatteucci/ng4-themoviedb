@@ -1,3 +1,15 @@
 .fixed {
    width: 120px;
 }
+
+.btn {
+    box-shadow: none;
+}
+
+.btn.active {
+    border-bottom: 2px solid #01D475;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
