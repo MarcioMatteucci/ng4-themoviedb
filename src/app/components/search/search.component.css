@@ -4,6 +4,7 @@
 
 .btn {
     box-shadow: none;
+    border-bottom: 2px solid transparent;
 }
 
 .btn.active {
