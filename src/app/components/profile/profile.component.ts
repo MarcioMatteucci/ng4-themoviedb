@@ -23,9 +23,9 @@ export class ProfileComponent implements OnInit {
   isLoading = true;
 
   userVotedMovies: Movie[];
-  userWatchlistMovies : Movie[];
+  userWatchlistMovies: Movie[];
   userVotedTvShows: TvShow[];
-  userWatchlistTvShows : TvShow[];
+  userWatchlistTvShows: TvShow[];
 
   constructor(
     private userService: UserService
@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
           this.userVotedMovies = data.results;
           // console.log(this.userVotedMovies);
         }
-      });     
+      });
 
     this.userService.getUserWatchlistMovies()
       .subscribe(data => {
