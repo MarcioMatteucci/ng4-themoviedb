@@ -11,7 +11,7 @@
 <div *ngIf="findSomething && searchStr !== ''">
   <div *ngFor="let tvshow of tvshows">
     <div class="card mb-1">
-      <div class="card-block">
+      <div class="card-body">
         <img *ngIf="tvshow.poster_path" src="https://image.tmdb.org/t/p/w45{{tvshow.poster_path}}" width="60px" height="90px" alt="Sin imagen" >
         <h3 class="card-title"><a routerLink="/tv/{{tvshow.id}}" routerLinkActive="active"><strong>{{ tvshow.name }}</strong></a></h3>
         <p class="card-text my-1"><strong>Título Original: </strong> {{ tvshow.original_name }} </p>
