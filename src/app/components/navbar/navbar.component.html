@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-md navbar-inverse bg-dark mb-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarItems" aria-controls="navbarItems"
     aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
+    <span class="navbar-toggler-icon"></span>
+  </button>
   <a class="navbar-brand" routerLink="/">
-    <img src="https://www.programmableweb.com/sites/default/files/styles/facebook_scale_width_200/public/the-movie-db-api.png?itok=ImW3MQle" width="30" height="30" class="d-inline-block align-top" alt="">
-    Ng4TheMovieDB
+    <img src="https://www.programmableweb.com/sites/default/files/styles/facebook_scale_width_200/public/the-movie-db-api.png?itok=ImW3MQle"
+      width="30" height="30" class="d-inline-block align-top" alt=""> Ng4TheMovieDB
   </a>
 
   <div class="collapse navbar-collapse" id="navbarItems">
@@ -14,7 +14,9 @@
         <a class="nav-link" routerLink="/home">Inicio</a>
       </li>
       <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" routerLink="/search">Buscar&nbsp;&nbsp;<i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i></a>
+        <a class="nav-link" routerLink="/search">Buscar&nbsp;&nbsp;
+          <i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i>
+        </a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -22,7 +24,8 @@
         <a class="nav-link" routerLink="/identify">Identificarse</a>
       </li>
       <li *ngIf="authenticateService.isLoggedIn()" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" routerLink="/profile"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Perfil</a>
+        <a class="nav-link" routerLink="/profile">
+          <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Perfil</a>
       </li>
       <li *ngIf="authenticateService.isLoggedIn()" class="nav-item">
         <a class="nav-link" routerLink="/home" (click)="onClickLogOut()">Cerrar Sesión</a>
